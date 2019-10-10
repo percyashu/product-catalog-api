@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -37,12 +36,12 @@ public class ProductController {
 	}
 
 	@GetMapping("/products")
-	public ResponseEntity<List<ProductDTO>> getUsers() {
+	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		return ResponseEntity.ok(productService.generate());
 	}
 
 	@GetMapping("/products/{productId}")
-	public ResponseEntity<ProductDTO> getUser(@PathVariable int productId) {
+	public ResponseEntity<ProductDTO> getProduct(@PathVariable int productId) {
 		ProductDTO product=productService.generateOne(productId);
 		if(product==null)
 			return ResponseEntity.notFound().build();
@@ -53,7 +52,7 @@ public class ProductController {
 
 	@ResponseBody
 	@PostMapping("/products/category/{categoryId}")
-	public ResponseEntity<?> saveUser(@RequestBody ProductDTO productDTO, @PathVariable Integer categoryId) {
+	public ResponseEntity<?> saveProduct(@RequestBody ProductDTO productDTO, @PathVariable Integer categoryId) {
 		 Product product = productService.add(productDTO,categoryId); 
 		 HttpHeaders responseHeaders = new
 		 HttpHeaders(); 
@@ -67,13 +66,13 @@ public class ProductController {
 	}
 
 	@PutMapping("/products/{productId}/category/{categoryId}")
-	public ResponseEntity<?> editUser(@PathVariable Integer productId,@PathVariable Integer categoryId, @RequestBody ProductDTO productDTO) {
+	public ResponseEntity<?> editProduct(@PathVariable Integer productId,@PathVariable Integer categoryId, @RequestBody ProductDTO productDTO) {
 		productService.edit(categoryId, productDTO,productId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 	}
 	@DeleteMapping("/products/{productId}")
-	public ResponseEntity<?> delUser(@PathVariable Integer productId){
+	public ResponseEntity<?> delProduct(@PathVariable Integer productId){
 		productService.del(productId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

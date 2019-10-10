@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2019 at 01:38 PM
+-- Generation Time: Oct 10, 2019 at 02:44 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -38,30 +38,8 @@ CREATE TABLE `category_tbl` (
 --
 
 INSERT INTO `category_tbl` (`id`, `name`) VALUES
-(1, 'Power & Electronics'),
-(2, 'Power & Electronics2'),
-(3, 'Power & Electronics3'),
-(5, 'Power & Electronics5'),
-(6, 'Power & Electronics56'),
-(7, 'Power & Electronics564');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hibernate_sequence`
---
-
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `hibernate_sequence`
---
-
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(8),
-(8);
+(1, 'Electronics'),
+(3, 'Electronics 2');
 
 -- --------------------------------------------------------
 
@@ -73,15 +51,17 @@ CREATE TABLE `product_tbl` (
   `id` int(10) NOT NULL,
   `name` varchar(15) NOT NULL,
   `quantity` int(10) NOT NULL,
-  `price` double NOT NULL
+  `price` double NOT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_tbl`
 --
 
-INSERT INTO `product_tbl` (`id`, `name`, `quantity`, `price`) VALUES
-(1, 'MacBook Pro', 10, 2000000);
+INSERT INTO `product_tbl` (`id`, `name`, `quantity`, `price`, `category_id`) VALUES
+(1, 'aaa', 12, 221111, 3),
+(3, 'Alienware Dell', 100, 25000000, 3);
 
 --
 -- Indexes for dumped tables
@@ -91,13 +71,15 @@ INSERT INTO `product_tbl` (`id`, `name`, `quantity`, `price`) VALUES
 -- Indexes for table `category_tbl`
 --
 ALTER TABLE `category_tbl`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `product_tbl`
 --
 ALTER TABLE `product_tbl`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK5xwqb9thqesvk5qhq52ivqe9l` (`category_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -107,13 +89,23 @@ ALTER TABLE `product_tbl`
 -- AUTO_INCREMENT for table `category_tbl`
 --
 ALTER TABLE `category_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_tbl`
 --
 ALTER TABLE `product_tbl`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `product_tbl`
+--
+ALTER TABLE `product_tbl`
+  ADD CONSTRAINT `FK5xwqb9thqesvk5qhq52ivqe9l` FOREIGN KEY (`category_id`) REFERENCES `category_tbl` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
