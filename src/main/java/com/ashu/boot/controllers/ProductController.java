@@ -72,10 +72,10 @@ public class ProductController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 	}
-	/*@DeleteMapping("/products/{productId}")
-	public ResponseEntity<?> delUser(@PathVariable String username){
-		productService.del(username);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}*/
+	@DeleteMapping("/products/{productId}")
+	public ResponseEntity<?> delUser(@PathVariable Integer productId){
+		productService.del(productId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 }
 
