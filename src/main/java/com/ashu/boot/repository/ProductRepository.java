@@ -1,11 +1,14 @@
 package com.ashu.boot.repository;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.ashu.boot.models.Product;
 
 @Repository
-public interface ProductRepository extends JpaRepositoryImplementation<Product, Integer> {
-
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+	Optional<Product> findByIdAndCategoryId(int Id ,int categoryId);
 }

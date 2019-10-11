@@ -67,7 +67,7 @@ public class ProductController {
 
 	@PutMapping("/products/{productId}/category/{categoryId}")
 	public ResponseEntity<?> editProduct(@PathVariable Integer productId,@PathVariable Integer categoryId, @RequestBody ProductDTO productDTO) {
-		productService.edit(categoryId, productDTO,productId);
+		productService.edit(productId, productDTO,categoryId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 	}
