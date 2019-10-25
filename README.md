@@ -14,9 +14,9 @@ Api to implement same functions of the ProductCatalog application using local my
 
 4 Reconfigure the application.properties file by changing connection settings to that of local mysql database
 
-3 Run as a spring boot app.
+5 Run as a spring boot app.
 
-4 Access swagger on localhost:8080/swagger-ui.html to see all end points.
+6 Access swagger on localhost:8080/swagger-ui.html to see all end points.
 
 
  
